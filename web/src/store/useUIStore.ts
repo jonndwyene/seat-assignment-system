@@ -1,10 +1,8 @@
 import { create } from "zustand";
 
-type Tabs = 'students' | 'room' | 'output'
-
 interface UIStoreState {
- selectedTab: Tabs
- setSelectedTab: (selectedTab: Tabs) => void
+ selectedTab: any
+ setSelectedTab: (selectedTab: any) => void
 }
 
 export const useUIStore = create<UIStoreState>((set) => ({
