@@ -1,4 +1,4 @@
-import { RefObject, useRef } from "react";
+import { RefObject, useRef, useEffect } from "react";
 import { useGesture } from "@use-gesture/react";
 
 export function usePinchHandler(
@@ -11,6 +11,24 @@ export function usePinchHandler(
   const firstPan = useRef({ x: 0, y: 0 });
   const firstDistance = useRef(0);
   const firstScale = useRef(1);
+
+  // Prevent browser gesture zoom (Safari / trackpads)
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const prevent = (e: Event) => e.preventDefault();
+
+    el.addEventListener("gesturestart", prevent);
+    el.addEventListener("gesturechange", prevent);
+    el.addEventListener("gestureend", prevent);
+
+    return () => {
+      el.removeEventListener("gesturestart", prevent);
+      el.removeEventListener("gesturechange", prevent);
+      el.removeEventListener("gestureend", prevent);
+    };
+  }, [ref]);
 
   const applyZoom = (distance: number, ox: number, oy: number, first: boolean) => {
     if (first) {
@@ -40,7 +58,7 @@ export function usePinchHandler(
       onWheel: ({ event, delta: [, dy], first }) => {
         const wheel = event as WheelEvent;
 
-        if (!wheel.ctrlKey) return; // require ctrl + wheel
+        if (!wheel.ctrlKey) return;
 
         event.preventDefault();
 
@@ -57,9 +75,6 @@ export function usePinchHandler(
     },
     {
       target: ref,
-      pinch: {
-        scaleBounds: { min: 0.5, max: 20 },
-      },
       eventOptions: { passive: false },
     }
   );
