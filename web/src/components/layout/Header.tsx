@@ -130,7 +130,8 @@ export default function Header() {
         <Image 
         src={'/github.png'} 
         alt={'github.png'} 
-        sizes="32px"
+        width={32}
+        height={32}
         onClick={() => {window.open('https://github.com/jonndwyene/seat-assignment-system', '_blank')}}/>
       }
     </div>
