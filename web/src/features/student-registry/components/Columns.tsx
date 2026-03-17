@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef, RowData } from "@tanstack/react-table"
 import useDataTable from "../hooks/useDataTable"
+
+import '@tanstack/react-table'
+
 
 export type Data = {
   id: number
@@ -18,6 +21,12 @@ export type Data = {
   learningNeeds: boolean
 }
 
+declare module '@tanstack/react-table' {
+  interface TableMeta<TData extends RowData> {
+    updateData: (index: number, id: string, value: any) => void
+    removeRow: (index: number) => void
+  }
+}
 
 export const columns: ColumnDef<Data>[] = [
   {
