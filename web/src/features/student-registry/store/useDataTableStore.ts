@@ -6,7 +6,7 @@ interface DataTableState {
   data: Data[]
   setData: (data: Data[]) => void
   addRow: (row: Data) => void
-  updateCell: (rowIndex, columnId, value) => void
+  updateCell: (rowIndex: number, columnId: number, value: any) => void
 }
 
 export const useDataTableStore = create<DataTableState>((set) => ({
