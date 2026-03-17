@@ -1,9 +1,7 @@
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface Student {
-  firstname: string;
-  middleInitial: string;
-  lastname: string;
+  name: string;
   visionIssues: boolean;
   hearingImpairment: boolean;
   medicalNeeds: boolean;
@@ -19,13 +17,13 @@ interface Element {
 interface SeatAssignment {
   x: number;
   y: number;
-  lastname: string | null; // null = empty/unoccupied seat
+  name: string | null; // null = empty/unoccupied seat
 }
 
 // ─── Priority Weights ─────────────────────────────────────────────────────────
 
 const PRIORITY_WEIGHTS: Record<
-  keyof Omit<Student, "firstname" | "middleInitial" | "lastname">,
+  keyof Omit<Student, "name">,
   number
 > = {
   physicalNeeds:     4,
@@ -111,7 +109,7 @@ export function generateOptimalSeatAssignment(
   elements: Element[]
 ): SeatAssignment[] {
   // Start with every seat empty
-  const result: SeatAssignment[] = elements.map(e => ({ x: e.x, y: e.y, lastname: null }));
+  const result: SeatAssignment[] = elements.map(e => ({ x: e.x, y: e.y, name: null }));
 
   if (students.length === 0 || elements.length === 0) return result;
 
@@ -157,7 +155,7 @@ export function generateOptimalSeatAssignment(
     for (let i = 0; i < nf; i++) {
       const seat = frontSeats[assignF[i]];
       const idx  = result.findIndex(r => r.x === seat.x && r.y === seat.y);
-      result[idx].lastname = frontStudents[i].student.lastname;
+      result[idx].name = frontStudents[i].student.name;
     }
   }
 
@@ -182,7 +180,7 @@ export function generateOptimalSeatAssignment(
       if (seatIdx < backSeats.length) {
         const seat = backSeats[seatIdx];
         const idx  = result.findIndex(r => r.x === seat.x && r.y === seat.y);
-        result[idx].lastname = backStudents[i].student.lastname;
+        result[idx].name = backStudents[i].student.name;
       }
     }
   }
