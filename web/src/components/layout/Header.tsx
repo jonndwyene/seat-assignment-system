@@ -122,12 +122,17 @@ export default function Header() {
               <Button
                 onClick={() => { window.open('https://forms.gle/K43hSXPM4u6hzG5C8', '_blank') }}
               >Answer Survey</Button>
-              <Image src={'/github.png'} alt={'github.png'} sizes="40px"
-              onClick={() => {window.open('https://github.com', '_blank')}}/>
             </CardFooter>
           </Card>
         </TabsContent>
       </Tabs>
+      {selectedTab === 'output' &&
+        <Image 
+        src={'/github.png'} 
+        alt={'github.png'} 
+        sizes="32px"
+        onClick={() => {window.open('https://github.com/jonndwyene/seat-assignment-system', '_blank')}}/>
+      }
     </div>
   )
 }
