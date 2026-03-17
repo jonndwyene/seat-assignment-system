@@ -122,7 +122,7 @@ export default function Header() {
               <Button
                 onClick={() => { window.open('https://forms.gle/K43hSXPM4u6hzG5C8', '_blank') }}
               >Answer Survey</Button>
-              <Image src={'/github.png'} alt={'github.png'}
+              <Image src={'/github.png'} alt={'github.png'} sizes="10px"
               onClick={() => {window.open('https://github.com', '_blank')}}/>
             </CardFooter>
           </Card>
