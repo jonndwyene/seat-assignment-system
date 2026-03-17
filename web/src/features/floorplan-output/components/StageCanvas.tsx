@@ -31,7 +31,7 @@ export default function OutputStageCanvas() {
             {results?.map((entry, index) => (
               <Group key={index}>
                 <Image x={entry.x} y={entry.y} image={image} width={10} height={10}/>
-                <Text x={entry.x} y={entry.y - 2.5} fontSize={1.5} text={entry.lastname}></Text>
+                <Text x={entry.x} y={entry.y - 1} fontSize={1.5} text={entry.name}></Text>
               </Group>
             ))}
           </Group>

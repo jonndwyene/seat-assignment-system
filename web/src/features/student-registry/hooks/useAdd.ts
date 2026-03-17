@@ -4,10 +4,7 @@ import { Data } from "../components/Columns";
 const notAvailable = 'N/A'
 
 const defaultData: Data = {
-  id: 0,
-  firstname: notAvailable,
-  middleInitial: notAvailable,
-  lastname: notAvailable,
+  name: notAvailable,
   visionIssues: false,
   hearingImpairment: false,
   medicalNeeds: false,

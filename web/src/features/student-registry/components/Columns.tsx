@@ -10,7 +10,6 @@ import '@tanstack/react-table'
 
 
 export type Data = {
-  id: number
   name: string
   visionIssues: boolean
   hearingImpairment: boolean
