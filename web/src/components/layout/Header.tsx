@@ -9,6 +9,7 @@ import useAdd from "@/features/student-registry/hooks/useAdd"
 import useDataTable from "@/features/student-registry/hooks/useDataTable"
 import useUI from "@/hooks/useUI"
 import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
+import Image from "next/image"
 
 
 export default function Header() {
@@ -117,10 +118,12 @@ export default function Header() {
 
               </CardDescription>
             </CardHeader>
-            <CardFooter>
+            <CardFooter className="justify-between">
               <Button
                 onClick={() => { window.open('https://forms.gle/K43hSXPM4u6hzG5C8', '_blank') }}
               >Answer Survey</Button>
+              <Image src={'/github.png'} alt={'github.png'}
+              onClick={() => {window.open('https://github.com', '_blank')}}/>
             </CardFooter>
           </Card>
         </TabsContent>
