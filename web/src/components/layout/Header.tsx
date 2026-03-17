@@ -110,9 +110,7 @@ export default function Header() {
             <CardHeader>
               <CardTitle>Results</CardTitle>
               <CardDescription className="whitespace-pre-line text-xs">
-                {`This is where generated results may appear.
-
-                Tips:
+                {`Tips:
                 - use two fingers to zoom & drag.
                 `}
 
