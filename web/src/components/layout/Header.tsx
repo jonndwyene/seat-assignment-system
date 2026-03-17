@@ -127,12 +127,14 @@ export default function Header() {
         </TabsContent>
       </Tabs>
       {selectedTab === 'output' &&
+      <div>
         <Image 
         src={'/github.png'} 
         alt={'github.png'} 
         width={32}
         height={32}
         onClick={() => {window.open('https://github.com/jonndwyene/seat-assignment-system', '_blank')}}/>
+      </div>
       }
     </div>
   )
