@@ -68,7 +68,7 @@ export default function Header() {
                 {`Tips:
                 - Use two fingers to zoom & drag.
                 - Click anywhere to add a chair.
-                - Click to existing chair to remove it.
+                - Click to an existing chair to remove it.
                 - Use "Undo"/"Redo" to revert to previous actions.
                 - Click "Run" to generate results.
                 `}
