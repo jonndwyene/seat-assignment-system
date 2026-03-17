@@ -7,6 +7,7 @@ export function useAddElement(
   stageRef: RefObject<Konva.Stage | null>
 ) {
   const { addElements } = useElementsStore()
+  if (!stageRef.current) return
   useGesture(
     {
       onDrag: ({ tap, last, event }) => {
@@ -33,7 +34,7 @@ export function useAddElement(
       },
     },
     {
-      target: stageRef,
+      target: stageRef.current?.container(),
       drag: {
         filterTaps: true,
         threshold: 0
