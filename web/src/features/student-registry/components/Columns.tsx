@@ -101,14 +101,15 @@ export const columns: ColumnDef<Data>[] = [
   },
   {
     id: 'actions',
-    header: 'Delete',
+    header: '',
     cell: ({row: {index}, table}) => {
       return <Button 
+      className="w-15"
       variant={'destructive'} 
       size={'icon'}
       onClick={(e) => {
         table.options.meta?.removeRow(index)
-      }}/>
+      }}>Delete</Button>
     }
   },
 ]
