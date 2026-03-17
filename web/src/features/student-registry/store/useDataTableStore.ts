@@ -10,7 +10,40 @@ interface DataTableState {
 }
 
 export const useDataTableStore = create<DataTableState>((set) => ({
-  data: [],
+  data: [
+    {
+      name: 'Abad',
+      visionIssues: false,
+      hearingImpairment: false,
+      medicalNeeds: false,
+      physicalNeeds: false,
+      learningNeeds: false
+    },
+    {
+      name: 'Bautista',
+      visionIssues: false,
+      hearingImpairment: false,
+      medicalNeeds: false,
+      physicalNeeds: false,
+      learningNeeds: false
+    },
+    {
+      name: 'Caballero',
+      visionIssues: false,
+      hearingImpairment: false,
+      medicalNeeds: false,
+      physicalNeeds: false,
+      learningNeeds: false
+    },
+    {
+      name: 'Dela Cruz',
+      visionIssues: false,
+      hearingImpairment: false,
+      medicalNeeds: false,
+      physicalNeeds: false,
+      learningNeeds: false
+    },
+  ],
   setData: (data) => set({data}),
   addRow: (row) => set((s) => ({ data: [...s.data, row]})),
   updateCell: (rowIndex, columnId, value) => set((s) => ({

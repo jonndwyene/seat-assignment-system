@@ -41,7 +41,12 @@ export const useElementsStore = create<ElementsStore>((set) => ({
       };
     }),
   past: [],
-  present: [{x:10, y:40}],
+  present: [
+    {x:10, y:40},
+    {x:20, y:30},
+    {x:30, y:40},
+    {x:20, y:50}
+  ],
   future: [],
   undo: () =>
     set((state) => {
