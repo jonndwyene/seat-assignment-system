@@ -31,7 +31,7 @@ export const columns: ColumnDef<Data>[] = [
     header: 'Name',
     cell: ({getValue, row: {index}, column: {id}, table}) => {
       return <Input
-      className="w-30 h-8"
+      className="w-50 h-8"
       value={String(getValue())}
       onChange={(e) => {
         table.options.meta?.updateData(index, id, e.target.value)
