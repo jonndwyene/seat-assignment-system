@@ -27,11 +27,7 @@ export function usePinchHandler(
     const dx = ox - (firstOrigin.current.x - firstPan.current.x) * ratio;
     const dy = oy - (firstOrigin.current.y - firstPan.current.y) * ratio;
 
-    handler({
-      x: dx,
-      y: dy,
-      scale: newScale,
-    });
+    handler({ x: dx, y: dy, scale: newScale });
   };
 
   useGesture(
@@ -42,15 +38,17 @@ export function usePinchHandler(
       },
 
       onWheel: ({ event, delta: [, dy], first }) => {
-        if (!(event as WheelEvent).ctrlKey) return;
+        const wheel = event as WheelEvent;
+
+        if (!wheel.ctrlKey) return; // require ctrl + wheel
 
         event.preventDefault();
 
         const rect = ref.current?.getBoundingClientRect();
         if (!rect) return;
 
-        const ox = (event as WheelEvent).clientX - rect.left;
-        const oy = (event as WheelEvent).clientY - rect.top;
+        const ox = wheel.clientX - rect.left;
+        const oy = wheel.clientY - rect.top;
 
         const distance = firstDistance.current - dy;
 
@@ -61,9 +59,6 @@ export function usePinchHandler(
       target: ref,
       pinch: {
         scaleBounds: { min: 0.5, max: 20 },
-      },
-      wheel: {
-        modifierKey: "ctrlKey",
       },
       eventOptions: { passive: false },
     }
