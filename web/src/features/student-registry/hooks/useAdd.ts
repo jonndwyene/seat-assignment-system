@@ -1,10 +1,8 @@
 import useDataTable from "./useDataTable";
 import { Data } from "../components/Columns";
 
-const notAvailable = 'N/A'
-
 const defaultData: Data = {
-  name: notAvailable,
+  name: '',
   visionIssues: false,
   hearingImpairment: false,
   medicalNeeds: false,
