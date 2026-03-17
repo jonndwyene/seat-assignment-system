@@ -40,7 +40,7 @@ export default function Header() {
                 - Left the toggle off if not applicable.
                 - Click "Run" to generate results.
                 `}
-                
+
               </CardDescription>
             </CardHeader>
             <CardFooter className="flex justify-between">
@@ -114,9 +114,14 @@ export default function Header() {
                 Tips:
                 - use two fingers to zoom & drag.
                 `}
-                
+
               </CardDescription>
             </CardHeader>
+            <CardFooter>
+              <Button
+                onClick={() => { window.open('https://forms.gle/K43hSXPM4u6hzG5C8', '_blank') }}
+              >Answer Survey</Button>
+            </CardFooter>
           </Card>
         </TabsContent>
       </Tabs>
