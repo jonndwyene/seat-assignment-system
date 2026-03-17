@@ -1,42 +1,45 @@
-import Konva from "konva";
-import { RefObject, useEffect, useRef } from "react";
-import { useElementsStore } from "../store";
+import { useElementsStore } from '@/features/floorplan-editor/store';
+import { useGesture } from '@use-gesture/react';
+import Konva from 'konva';
+import { RefObject } from 'react';
 
-export function useAdd(
-  stageRef: RefObject<Konva.Stage | null>,
+export function useAddElement(
+  stageRef: RefObject<Konva.Stage | null>
 ) {
-  const pos = useRef({
-    x: 0,
-    y: 0
-  })
-
   const { addElements } = useElementsStore()
+  useGesture(
+    {
+      onDrag: ({ tap, last, event }) => {
+        if (!stageRef.current) return
+        // 'tap' is true if the pointer was released without moving 
+        // 'last' ensures we only trigger this once on release
+        if (tap && last) {
+          const stage = stageRef.current;
+          if (!stage) return;
 
-  useEffect(() => {
-    const stage = stageRef.current
-    if (!stage) return
+          const pointer = stage.getPointerPosition();
+          if (!pointer) return;
 
-    const handleAdd = (e: Konva.KonvaEventObject<TouchEvent>) => {
-      const pointer = stage.getPointerPosition()
-      if (!pointer) return
-      if (e.evt.touches.length < 1) {
+          const targetNode = stage.findOne('Group') || stage;
+          const transform = targetNode.getAbsoluteTransform().copy().invert();
+          const relativePos = transform.point(pointer);
 
-        const targetNode = stage.findOne('Group') || stage.getLayers()[0]
-  
-        const transform = targetNode.getAbsoluteTransform().copy().invert()
-        const relativePos = transform.point(pointer)
-  
-        const snappedPos = {
-          x: Math.round( (relativePos.x - 5) / 10 ) * 10,
-          y: Math.round( (relativePos.y - 5) / 10 ) * 10
+          const snappedPos = {
+            x: Math.round((relativePos.x - 5) / 10) * 10,
+            y: Math.round((relativePos.y - 5) / 10) * 10,
+          };
+
+          addElements(snappedPos);
         }
-        addElements(snappedPos)
-      }
+      },
+    },
+    {
+      target: stageRef.current?.container(),
+      drag: {
+        filterTaps: true,
+        threshold: 0
+      },
+      eventOptions: { passive: false }
     }
-
-    stage.on('touchend', handleAdd)
-    return () => { stage.off('touchend', handleAdd) }
-  }, [stageRef])
-
-  return pos.current
+  );
 }
